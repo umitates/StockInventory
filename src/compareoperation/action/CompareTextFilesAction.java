@@ -23,8 +23,8 @@ public class CompareTextFilesAction implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		Map<String, Integer> actualFileBarcodes = readActualFileBarcodes();
-		Map<String, Integer> expectedFileBarcodes = readExpectedFileBarcodes();
+		Map<String, Long> actualFileBarcodes = readActualFileBarcodes();
+		Map<String, Long> expectedFileBarcodes = readExpectedFileBarcodes();
 		
 		Set<String> barcodes = new HashSet<String>();
 		barcodes.addAll(actualFileBarcodes.keySet());
@@ -46,19 +46,19 @@ public class CompareTextFilesAction implements ActionListener {
 		compareTextPanel.setComparisons(comparisons);
 	}
 
-	private Integer getValue(Map<String, Integer> fileBarcodes, String barcode) {
+	private Long getValue(Map<String, Long> fileBarcodes, String barcode) {
 		if(fileBarcodes.containsKey(barcode)) {
 			return fileBarcodes.get(barcode);
 		}
-		return 0;
+		return 0L;
 	}
 
-	private Map<String, Integer> readActualFileBarcodes() {
+	private Map<String, Long> readActualFileBarcodes() {
 		File actualFile = compareTextPanel.getActualFile();
 		return new BarcodeFileReaeder(actualFile).read();
 	}
 	
-	private Map<String, Integer> readExpectedFileBarcodes() {
+	private Map<String, Long> readExpectedFileBarcodes() {
 		File expectedFile = compareTextPanel.getExpectedFile();
 		return new BarcodeFileReaeder(expectedFile).read();
 	}

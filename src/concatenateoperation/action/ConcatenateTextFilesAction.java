@@ -26,11 +26,11 @@ public class ConcatenateTextFilesAction implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 	
-		Map<String, Integer> allElements = readAllElements();
+		Map<String, Long> allElements = readAllElements();
 		showFileChooserToWriteOutput(allElements);
 	}
 
-	private void showFileChooserToWriteOutput(Map<String, Integer> allElements) {
+	private void showFileChooserToWriteOutput(Map<String, Long> allElements) {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setAcceptAllFileFilterUsed(false);
 		fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Metin Dosyalarý", "txt"));
@@ -49,19 +49,19 @@ public class ConcatenateTextFilesAction implements ActionListener {
 		resultPopup.showMessageDialog(concatenateTextPanel, "Birleþtirme iþlemi tamamlanmýþtýr.\nDosya: " + filePath);
 	}
 
-	private Map<String, Integer> readAllElements() {
-		Map<String, Integer> allElements = new TreeMap<String, Integer>();
+	private Map<String, Long> readAllElements() {
+		Map<String, Long> allElements = new TreeMap<String, Long>();
 		
 		Enumeration<File> files = concatenateTextPanel.getFileListModel().elements();
 		
 		while(files.hasMoreElements()) {
 			BarcodeFileReaeder fileReader = new BarcodeFileReaeder(files.nextElement());
-			Map<String, Integer> newBarcodeElements = fileReader.read();
+			Map<String, Long> newBarcodeElements = fileReader.read();
 			
 			for(String barcode : newBarcodeElements.keySet()) {
 				if(allElements.containsKey(barcode)) {
-					int oldCount = allElements.get(barcode);
-					int newCount = newBarcodeElements.get(barcode);
+					Long oldCount = allElements.get(barcode);
+					Long newCount = newBarcodeElements.get(barcode);
 					allElements.put(barcode, oldCount + newCount);
 				}else {
 					allElements.put(barcode, newBarcodeElements.get(barcode));
@@ -72,7 +72,7 @@ public class ConcatenateTextFilesAction implements ActionListener {
 		return allElements;
 	}
 
-	private void writeAllElementsToSelectedFile(File file, Map<String, Integer> elements) {
+	private void writeAllElementsToSelectedFile(File file, Map<String, Long> elements) {
 		BarcodeFileWriter fileWriter = new BarcodeFileWriter(file);
 		fileWriter.write(elements);
 	}

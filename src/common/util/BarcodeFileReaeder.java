@@ -14,16 +14,16 @@ public class BarcodeFileReaeder {
 		this.barcodeFile = barcodeFile;
 	}
 
-	public Map<String, Integer> read() {
-		Map<String, Integer> barcodes = new TreeMap<String, Integer>();
+	public Map<String, Long> read() {
+		Map<String, Long> barcodes = new TreeMap<String, Long>();
 		try {
 			Scanner scanner = new Scanner(barcodeFile);
 			while(scanner.hasNext()) {
 				String barcode = scanner.next();
 				String countAsString = scanner.next();
-				Integer count = Integer.parseInt(countAsString.replaceAll("[\\D]", ""));
+				Long count = Long.parseLong(countAsString.replaceAll("[\\D]", ""));
 				if(barcodes.containsKey(barcode)) {
-					int existingCount = barcodes.get(barcode);
+					Long existingCount = barcodes.get(barcode);
 					barcodes.put(barcode, existingCount + count);
 				}else {
 					barcodes.put(barcode, count);

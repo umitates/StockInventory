@@ -16,7 +16,7 @@ public class BarcodeFileWriter {
 		this.file = file;
 	}
 
-	public void write(Map<String, Integer> elements) {
+	public void write(Map<String, Long> elements) {
 		try {
 			
 			FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());

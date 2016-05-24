@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 
 import mainoperation.action.ShowCompareTextPanelAction;
 import mainoperation.action.ShowConcatenateTextPanelAction;
+import mainoperation.action.ShowDifferentiateTextPanelAction;
 
 public class MainScreen extends JFrame {
 
@@ -31,6 +32,8 @@ public class MainScreen extends JFrame {
 		operations.add(getCompareMenuItem());
 		operations.addSeparator();
 		operations.add(getConcatenateMenuItem());
+		operations.addSeparator();
+		operations.add(getDifferentiateMenuItem());
 		menuBar.add(operations);
 
 		return menuBar;
@@ -52,5 +55,14 @@ public class MainScreen extends JFrame {
 		compareMenuItem.addActionListener(showCompareTextPanelAction);
 		
 		return compareMenuItem;
+	}
+	
+	private JMenuItem getDifferentiateMenuItem() {
+		ShowDifferentiateTextPanelAction showDifferentiateTextPanelAction = new ShowDifferentiateTextPanelAction(this);
+		
+		JMenuItem differentiateMenuItem = new JMenuItem("TxT Fark Oluþtur");
+		differentiateMenuItem.addActionListener(showDifferentiateTextPanelAction);
+		
+		return differentiateMenuItem;
 	}
 }

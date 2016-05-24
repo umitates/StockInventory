@@ -3,27 +3,27 @@ package compareoperation.dto;
 public class Comparison {
 
 	private String barcode;
-	private Integer actual;
-	private Integer expected;
+	private Long actual;
+	private Long expected;
 	public String getBarcode() {
 		return barcode;
 	}
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
-	public Integer getActual() {
+	public Long getActual() {
 		return actual;
 	}
-	public void setActual(Integer actual) {
+	public void setActual(Long actual) {
 		this.actual = actual;
 	}
-	public Integer getExpected() {
+	public Long getExpected() {
 		return expected;
 	}
-	public void setExpected(Integer expected) {
+	public void setExpected(Long expected) {
 		this.expected = expected;
 	}
-	public Integer getDifference() {
+	public Long getDifference() {
 		return actual - expected;
 	}
 }
